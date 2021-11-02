@@ -4836,6 +4836,7 @@ GameObject:
   - component: {fileID: 5235257724121438621}
   - component: {fileID: 5235257724119013181}
   - component: {fileID: 5235257724117878877}
+  - component: {fileID: -4329938595786216478}
   m_Layer: 0
   m_Name: rocket
   m_TagString: Bullet
@@ -4907,6 +4908,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-4329938595786216478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235257724121859517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3c6d560f69b5d4c908e7dd8871f44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Explosion: {fileID: 426127997599770947, guid: 70cecb238fa01734ca1c374fed9cac61, type: 3}
 --- !u!1 &5235257724121859519
 GameObject:
   m_ObjectHideFlags: 0

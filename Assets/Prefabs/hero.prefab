@@ -489,9 +489,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48236b7fbf73f6e46953bd22a4ad3fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 4000
-  JumpForce: 100
-  MaxSpeed: 2
+  Force: 3000
+  JumpForce: 500
+  MaxSpeed: 10
+  ReverseFactor: 1
+  CharacterLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &933028674522338462
 Rigidbody2D:
   serializedVersion: 4
@@ -505,7 +509,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -763,6 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933028674526119246}
   - component: {fileID: 933028674521333918}
+  - component: {fileID: 708559833}
   m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
@@ -880,6 +885,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &708559833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933028674526353774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2346312cccbf8ae4dbf48d01f7f7f089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 5235257724121859517, guid: cd32897c67870cf42acc9eb24ec1e045, type: 3}
+  BulletSpeed: 20
+  FireRate: 2
 --- !u!1 &933028674526353778
 GameObject:
   m_ObjectHideFlags: 0
