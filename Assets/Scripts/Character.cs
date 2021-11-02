@@ -7,9 +7,12 @@ public class Character : MonoBehaviour
     public float Force = 1f;
     public float JumpForce = 1f;
     public float MaxSpeed = 2f;
+
+    [Range(0f,1f)]
+    public float ReverseFactor = 1f;
     public LayerMask CharacterLayer;
     private float horizontal;
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
 
     void Awake()
     {
@@ -25,27 +28,40 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        //MovementClamped();
-        //MovementSimple();
+        this.horizontal = Input.GetAxis("Horizontal");
+        //MoveByForce();
+        //MoveClamped();
+        //MoveSimple();
+        MoveAdvanced();
         Flip();
         Jump();
     }
 
-    private void Movement()
+    private void MoveByForce()
     {
-        this.horizontal = Input.GetAxis("Horizontal");
         rigidbody.AddForce(Vector2.right * this.Force * horizontal * Time.deltaTime);
     }
 
-    public void MovementClamped()
+    /// <summary>
+    /// Moves the character by force which gets lowered when reaching maximum speed
+    /// </summary>
+    private void MoveAdvanced()
+    {
+        float velocity = Mathf.Abs(this.rigidbody.velocity.x);
+        float factor = Mathf.Clamp01(velocity / this.MaxSpeed);
+        float inverseFactor = 1f - factor;
+        if(this.horizontal * this.rigidbody.velocity.x < 0f) inverseFactor = this.ReverseFactor;
+        rigidbody.AddForce(Vector2.right * this.Force * inverseFactor * horizontal * Time.deltaTime);
+    }
+
+    public void MoveClamped()
     {
         Vector2 velocity = rigidbody.velocity;
         velocity.x = Mathf.Clamp(velocity.x, -this.MaxSpeed, this.MaxSpeed);
         rigidbody.velocity = velocity;
     }
 
-    private void MovementSimple()
+    private void MoveSimple()
     {
         //Add to position to move character
         this.transform.position += new Vector3(this.MaxSpeed, 0f, 0f) * horizontal * Time.deltaTime;
@@ -68,6 +84,9 @@ public class Character : MonoBehaviour
         this.transform.localScale = scale;
     }
 
+    /// <summary>
+    /// Sets animation parameters
+    /// </summary>
     private void Animation()
     {
         Animator animator = this.GetComponent<Animator>();
@@ -75,6 +94,9 @@ public class Character : MonoBehaviour
         animator.SetFloat("Speed", speed);
     }
 
+    /// <summary>
+    /// Adds vertical jump force when pressing jump button and being grounded
+    /// </summary>
     private void Jump()
     {
         bool grounded = Physics2D.Raycast(this.transform.position, Vector2.down, 1f, ~this.CharacterLayer);

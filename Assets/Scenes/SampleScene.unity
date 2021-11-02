@@ -653,6 +653,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 933028674522338462, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 933028674526119242, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -702,8 +706,20 @@ PrefabInstance:
       value: hero
       objectReference: {fileID: 0}
     - target: {fileID: 6577304660108173226, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
+      propertyPath: Force
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577304660108173226, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
+      propertyPath: MaxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577304660108173226, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
       propertyPath: JumpForce
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577304660108173226, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
+      propertyPath: ReverseFactor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6577304660108173226, guid: 65a84a5c9af5ea74fa6c95ed92ffa59c, type: 3}
       propertyPath: CharacterLayer.m_Bits
