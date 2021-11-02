@@ -9,12 +9,12 @@ public class Weapon : MonoBehaviour
     public float FireRate = 1f;
     private float lastFired = 0f;
 
-    void Update()
+    public void Fire()
     {
         float delay = 1f / this.FireRate;
         bool canShoot = this.lastFired + delay <= Time.time;
-        
-        if (Input.GetButtonDown("Fire1") && canShoot)
+
+        if (canShoot)
         {
             this.lastFired = Time.time;
 

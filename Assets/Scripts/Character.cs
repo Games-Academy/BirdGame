@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public int PlayerIndex = 0;
     public float Force = 1f;
     public float JumpForce = 1f;
     public float MaxSpeed = 2f;
@@ -13,10 +14,12 @@ public class Character : MonoBehaviour
     public LayerMask CharacterLayer;
     private float horizontal;
     private new Rigidbody2D rigidbody;
+    private Weapon weapon;
 
     void Awake()
     {
         this.rigidbody = this.GetComponent<Rigidbody2D>();
+        this.weapon = this.GetComponentInChildren<Weapon>();
     }
 
     // Start is called before the first frame update
@@ -28,13 +31,15 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.horizontal = Input.GetAxis("Horizontal");
+        this.horizontal = Input.GetAxis("Horizontal_"+this.PlayerIndex);
         //MoveByForce();
         //MoveClamped();
         //MoveSimple();
         MoveAdvanced();
         Flip();
         Jump();
+
+        if(Input.GetButtonDown("Fire_"+this.PlayerIndex)) this.weapon.Fire();
     }
 
     private void MoveByForce()
@@ -101,7 +106,7 @@ public class Character : MonoBehaviour
     {
         bool grounded = Physics2D.Raycast(this.transform.position, Vector2.down, 1f, ~this.CharacterLayer);
         Debug.Log(grounded);
-        bool jump = Input.GetButtonDown("Jump");
+        bool jump = Input.GetButtonDown("Jump_"+this.PlayerIndex);
         if (jump && grounded)
         {
             rigidbody.AddForce(Vector2.up * this.JumpForce);
